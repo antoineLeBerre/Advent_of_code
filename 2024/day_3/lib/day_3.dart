@@ -27,8 +27,14 @@ int partOne(String contenuAsync) {
 
 int partTwo(String contenuAsync) {
   //Create list of int list
+  var doList = contenuAsync.split('do()');
+  List<String> withoutDontList = [];
+  for (var item in doList) {
+    var splitList = item.split('don\'t()');
+    withoutDontList.add(splitList[0]);
+  }
   RegExp regExp = RegExp(r'mul\((\d{1,3}),(\d{1,3})\)');
-  var listRegExp = regExp.allMatches(contenuAsync);
+  var listRegExp = regExp.allMatches(withoutDontList.join());
   List<int> listRes = [];
 
   for(var match in listRegExp){
